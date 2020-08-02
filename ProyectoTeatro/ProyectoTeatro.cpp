@@ -12,6 +12,9 @@ int main()
     miLocalidad.reservarEspacioGP("Luis", 83250161,1131424);
     miLocalidad.reservarEspacioGP("Luis", 83250163, 1131427);
     miLocalidad.reservarEspacioGP("Luis", 83250164, 1131425);
+    miLocalidad.reservarEspacioGP("Luis", 83250164, 1131425);
+    miLocalidad.reservarEspacioGP("Luis", 83250164, 1131425);
+    miLocalidad.reservarEspacioGP("Luis", 83250164, 1131425);
     cout << miLocalidad.imprimirEspaciosGP();
     cout << "\nGraderia general\n";
     miLocalidad.reservarEspacioGG("Francisco", 83250155, 1131489);
@@ -20,6 +23,9 @@ int main()
     miLocalidad.reservarEspacioGG("Fabiola", 83250155, 1131489);
     cout << miLocalidad.imprimirEspaciosGG();
 
-
+    miLocalidad.liberarGraderias();
+    miLocalidad.imprimirAreaPreferencial();
+    miLocalidad.imprimirMatrizGradPref();
+    miLocalidad.imprimirMatrizGradGeneral();
 }
 

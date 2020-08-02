@@ -2,6 +2,7 @@
 #include <string>
 #include "Pila.h"
 #include "Lista.h"
+#include <iomanip>
 using namespace std;
 class Localidad
 {
@@ -10,6 +11,7 @@ private:
 	string nombre;
 	string direccion;
 	int cantidadMaxima;
+	int gradAreaPreferencial[2][5],gradPrefMatrix[4][5], gradGenMatrix[4][5];
 	Pila graderiaPreferencial;
 	Lista graderiaGeneral;
 
@@ -32,6 +34,16 @@ public:
 	bool reservarEspacioGP(string nombre, int numero, int id);
 	string imprimirEspaciosGP();
 
+	//Operaciones matrizes
+	void liberarGraderias();
+	void liberarGraderiaAreaPreferencial();
+	void liberarGraderiaPreferencial();
+	void liberarGraderiaGeneral();
+	void imprimirAreaPreferencial();
+	void imprimirMatrizGradPref();
+	void llenarEspacioGraderiaPreferencial();
+	void imprimirMatrizGradGeneral();
+	void llenarEspacioGraderiaGeneral();
 
 
 };

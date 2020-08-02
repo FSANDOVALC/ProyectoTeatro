@@ -39,14 +39,19 @@ void Localidad::setCantidadMaxima(int pCantidad)
 
 bool Localidad::reservarEspacioGG(string nombre, int numero, int id)
 {
+	bool rslt;
 	if (graderiaGeneral.getLargo() >= 20) {
 		return false;
 	}
 	else if (graderiaGeneral.getLargo() == 0) {
-		return graderiaGeneral.agregarAlInicio(1,"GraderiaGeneral",4000,nombre,numero,id);
+		rslt = graderiaGeneral.agregarAlInicio(1,"GraderiaGeneral",4000,nombre,numero,id);
+		//llenarEspacioGraderiaGeneral();
+		return rslt;
 	}
 	else {
-		return graderiaGeneral.agregarAlInicio(graderiaGeneral.getLargo()+1, "GraderiaGeneral",4000, nombre, numero,id);
+		rslt = graderiaGeneral.agregarAlInicio(graderiaGeneral.getLargo()+1, "GraderiaGeneral",4000, nombre, numero,id);
+		//llenarEspacioGraderiaGeneral();
+		return rslt;
 	}
 }
 
@@ -57,8 +62,11 @@ string Localidad::imprimirEspaciosGG()
 
 bool Localidad::reservarEspacioGP(string nombre, int numero,int id)
 {
+	bool rslt;
 	if (graderiaPreferencial.getTope() == NULL) {
-		return graderiaPreferencial.pushElemento(1,"GraderiaPreferencial",5500,nombre,numero,id);
+		rslt = graderiaPreferencial.pushElemento(1,"GraderiaPreferencial",5500,nombre,numero,id);
+		//llenarEspacioGraderiaPreferencial();
+		return rslt;
 	}
 	else {
 		int tmpAsientoTope = graderiaPreferencial.getTope()->getAsiento();
@@ -66,7 +74,9 @@ bool Localidad::reservarEspacioGP(string nombre, int numero,int id)
 			return false; //TODO agregar a cola
 		}
 		else {
-			return graderiaPreferencial.pushElemento(tmpAsientoTope + 1, "GraderiaPreferencial",5500, nombre, numero,id);
+			rslt = graderiaPreferencial.pushElemento(tmpAsientoTope + 1, "GraderiaPreferencial",5500, nombre, numero,id);
+			//llenarEspacioGraderiaPreferencial();
+			return rslt;
 		}
 	}
 }
@@ -74,6 +84,118 @@ bool Localidad::reservarEspacioGP(string nombre, int numero,int id)
 string Localidad::imprimirEspaciosGP()
 {
 	return graderiaPreferencial.imprimir();
+}
+
+
+void Localidad::liberarGraderias()
+{
+	liberarGraderiaAreaPreferencial();
+	liberarGraderiaPreferencial();
+	liberarGraderiaGeneral();
+}
+
+void Localidad::liberarGraderiaAreaPreferencial()
+{
+	//Liberar graderias Area Preferencial
+	int i, j;
+	int c = 1;
+	for (i = 0; i < 2; ++i)
+		for (j = 0; j < 5; ++j)
+		{
+			gradAreaPreferencial[i][j] = c;
+			c++;
+		}
+}
+
+void Localidad::liberarGraderiaPreferencial()
+{
+	int i, j;
+	int c = 1;
+	for (i = 0; i < 4; ++i)
+		for (j = 0; j < 5; ++j)
+		{
+			gradPrefMatrix[i][j] = c;
+			c++;
+		}
+}
+
+void Localidad::liberarGraderiaGeneral()
+{
+	int i, j;
+	int c = 1;
+	for (i = 0; i < 4; ++i)
+		for (j = 0; j < 5; ++j)
+		{
+			gradGenMatrix[i][j]=c;
+			c++;
+		}
+}
+
+void Localidad::imprimirAreaPreferencial()
+{
+	int i, j;
+	cout << "\nEspacios Area Preferencial: \n";
+	for (i = 0; i < 2; ++i)
+		for (j = 0; j < 5; ++j)
+		{
+			cout << right << setw(4) << gradAreaPreferencial[i][j];
+			if (j == 5 - 1)
+				cout << endl;
+		}
+}
+
+void Localidad::imprimirMatrizGradPref()
+{
+	int i, j;
+	cout << "\nEspacios Graderia Preferencial: \n";
+	for (i = 0; i < 4; ++i)
+		for (j = 0; j < 5; ++j)
+		{
+			cout << right << setw(4) << gradPrefMatrix[i][j];
+			if (j == 5 - 1)
+				cout << endl;
+		}
+}
+
+void Localidad::llenarEspacioGraderiaPreferencial()
+{
+	int tmpAsientoTope = graderiaPreferencial.getTope()->getAsiento();
+	int i, j;
+	for (i = 0; i < 4; ++i)
+		for (j = 0; j < 5; ++j)
+		{
+			if (gradPrefMatrix[i][j] == 0) {
+				gradPrefMatrix[i][j] = tmpAsientoTope;
+				return;
+			}
+		}
+}
+
+void Localidad::imprimirMatrizGradGeneral()
+{
+	int i, j;
+	cout << "\nEspacios Graderia General: \n";
+	for (i = 0; i < 4; ++i)
+		for (j = 0; j < 5; ++j)
+		{
+			cout << right << setw(4) << gradGenMatrix[i][j];
+			if (j == 5 - 1)
+				cout << endl;
+		}
+}
+
+void Localidad::llenarEspacioGraderiaGeneral()
+{
+	int tmpLargo = graderiaGeneral.getLargo();
+	int i, j;
+	for (i = 0; i < 4; ++i)
+		for (j = 0; j < 5; ++j)
+		{
+			if (gradGenMatrix[i][j] == 0) {
+				gradGenMatrix[i][j] = tmpLargo;
+				return;
+			}
+		}
 }
 
 
