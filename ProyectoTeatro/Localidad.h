@@ -2,6 +2,7 @@
 #include <string>
 #include "Pila.h"
 #include "Lista.h"
+#include "ListaDobleEnlazada.h"
 #include <iomanip>
 using namespace std;
 class Localidad
@@ -14,6 +15,7 @@ private:
 	int gradAreaPreferencial[2][5],gradPrefMatrix[4][5], gradGenMatrix[4][5];
 	Pila graderiaPreferencial;
 	Lista graderiaGeneral;
+	ListaDobleEnlazada graderiaAreaPreferencial;
 
 public:
 	Localidad();
@@ -25,6 +27,10 @@ public:
 	void setDireccion(string pDireccion);
 	int getCantidadMaxima();
 	void setCantidadMaxima(int pCantidad);
+
+	//Operaciones area preferencial
+	bool reservarEspacioAP(int asiento,string nombre, int numero, int id);
+	string imprimirEspaciosAP();
 
 	//Operaciones graderia general
 	bool reservarEspacioGG(string nombre, int numero, int id);
@@ -39,11 +45,13 @@ public:
 	void liberarGraderiaAreaPreferencial();
 	void liberarGraderiaPreferencial();
 	void liberarGraderiaGeneral();
+	void imprimirEspaciosGraderias();
 	void imprimirAreaPreferencial();
+	void llenarEspacioGraderiaAreaPreferencial(int pDato);
 	void imprimirMatrizGradPref();
-	void llenarEspacioGraderiaPreferencial();
+	void llenarEspacioGraderiaPreferencial(int pDato);
 	void imprimirMatrizGradGeneral();
-	void llenarEspacioGraderiaGeneral();
+	void llenarEspacioGraderiaGeneral(int pDato);
 
 
 };

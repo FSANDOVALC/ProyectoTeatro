@@ -37,6 +37,34 @@ void Localidad::setCantidadMaxima(int pCantidad)
 	this->cantidadMaxima = pCantidad;
 }
 
+bool Localidad::reservarEspacioAP(int asiento,string nombre, int numero, int id)
+{
+	bool rslt;
+	if (graderiaAreaPreferencial.getCabeza() == NULL) {
+		rslt = graderiaAreaPreferencial.insertar(asiento, "GraderiaAreaPreferencial", 7000, nombre, numero, id);
+		if (rslt) {
+			llenarEspacioGraderiaAreaPreferencial(asiento);
+		}
+		return rslt;
+	}
+	else {
+		int tmpAsientoTope = graderiaAreaPreferencial.getLargo();
+		if (tmpAsientoTope >= 10) {
+			return false; //TODO agregar a cola
+		}
+		else {
+			rslt = graderiaAreaPreferencial.insertar(asiento, "GraderiaAreaPreferencial", 7000, nombre, numero, id);
+			llenarEspacioGraderiaAreaPreferencial(asiento);
+			return rslt;
+		}
+	}
+}
+
+string Localidad::imprimirEspaciosAP()
+{
+	return graderiaAreaPreferencial.mostrarDobleEn();
+}
+
 bool Localidad::reservarEspacioGG(string nombre, int numero, int id)
 {
 	bool rslt;
@@ -45,12 +73,12 @@ bool Localidad::reservarEspacioGG(string nombre, int numero, int id)
 	}
 	else if (graderiaGeneral.getLargo() == 0) {
 		rslt = graderiaGeneral.agregarAlInicio(1,"GraderiaGeneral",4000,nombre,numero,id);
-		//llenarEspacioGraderiaGeneral();
+		llenarEspacioGraderiaGeneral(graderiaGeneral.getLargo());
 		return rslt;
 	}
 	else {
 		rslt = graderiaGeneral.agregarAlInicio(graderiaGeneral.getLargo()+1, "GraderiaGeneral",4000, nombre, numero,id);
-		//llenarEspacioGraderiaGeneral();
+		llenarEspacioGraderiaGeneral(graderiaGeneral.getLargo());
 		return rslt;
 	}
 }
@@ -65,7 +93,7 @@ bool Localidad::reservarEspacioGP(string nombre, int numero,int id)
 	bool rslt;
 	if (graderiaPreferencial.getTope() == NULL) {
 		rslt = graderiaPreferencial.pushElemento(1,"GraderiaPreferencial",5500,nombre,numero,id);
-		//llenarEspacioGraderiaPreferencial();
+		llenarEspacioGraderiaPreferencial(graderiaPreferencial.getTope()->getAsiento());
 		return rslt;
 	}
 	else {
@@ -75,7 +103,7 @@ bool Localidad::reservarEspacioGP(string nombre, int numero,int id)
 		}
 		else {
 			rslt = graderiaPreferencial.pushElemento(tmpAsientoTope + 1, "GraderiaPreferencial",5500, nombre, numero,id);
-			//llenarEspacioGraderiaPreferencial();
+			llenarEspacioGraderiaPreferencial(graderiaPreferencial.getTope()->getAsiento());
 			return rslt;
 		}
 	}
@@ -131,6 +159,14 @@ void Localidad::liberarGraderiaGeneral()
 		}
 }
 
+void Localidad::imprimirEspaciosGraderias()
+{
+	imprimirAreaPreferencial();
+	imprimirMatrizGradPref();
+	imprimirMatrizGradGeneral();
+	cout << "\n**Los espacios con el numero 0 ya estan reservados\n";
+}
+
 void Localidad::imprimirAreaPreferencial()
 {
 	int i, j;
@@ -141,6 +177,19 @@ void Localidad::imprimirAreaPreferencial()
 			cout << right << setw(4) << gradAreaPreferencial[i][j];
 			if (j == 5 - 1)
 				cout << endl;
+		}
+}
+
+void Localidad::llenarEspacioGraderiaAreaPreferencial(int pDato)
+{
+	int i, j;
+	for (i = 0; i < 2; ++i)
+		for (j = 0; j < 5; ++j)
+		{
+			if (gradAreaPreferencial[i][j] == pDato) {
+				gradAreaPreferencial[i][j] = 0;
+				return;
+			}
 		}
 }
 
@@ -157,15 +206,14 @@ void Localidad::imprimirMatrizGradPref()
 		}
 }
 
-void Localidad::llenarEspacioGraderiaPreferencial()
+void Localidad::llenarEspacioGraderiaPreferencial(int pDato)
 {
-	int tmpAsientoTope = graderiaPreferencial.getTope()->getAsiento();
 	int i, j;
 	for (i = 0; i < 4; ++i)
 		for (j = 0; j < 5; ++j)
 		{
-			if (gradPrefMatrix[i][j] == 0) {
-				gradPrefMatrix[i][j] = tmpAsientoTope;
+			if (gradPrefMatrix[i][j] == pDato) {
+				gradPrefMatrix[i][j] = 0;
 				return;
 			}
 		}
@@ -184,15 +232,14 @@ void Localidad::imprimirMatrizGradGeneral()
 		}
 }
 
-void Localidad::llenarEspacioGraderiaGeneral()
+void Localidad::llenarEspacioGraderiaGeneral(int pDato)
 {
-	int tmpLargo = graderiaGeneral.getLargo();
 	int i, j;
 	for (i = 0; i < 4; ++i)
 		for (j = 0; j < 5; ++j)
 		{
-			if (gradGenMatrix[i][j] == 0) {
-				gradGenMatrix[i][j] = tmpLargo;
+			if (gradGenMatrix[i][j] == pDato) {
+				gradGenMatrix[i][j] = 0;
 				return;
 			}
 		}

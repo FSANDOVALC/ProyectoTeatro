@@ -140,19 +140,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Lista.cpp" />
+    <ClCompile Include="ListaDobleEnlazada.cpp" />
     <ClCompile Include="Localidad.cpp" />
     <ClCompile Include="Nodo.cpp" />
     <ClCompile Include="NodoBoleto.cpp" />
     <ClCompile Include="NodoCliente.cpp" />
+    <ClCompile Include="NodoDoble.cpp" />
     <ClCompile Include="Pila.cpp" />
     <ClCompile Include="ProyectoTeatro.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lista.h" />
+    <ClInclude Include="ListaDobleEnlazada.h" />
     <ClInclude Include="Localidad.h" />
     <ClInclude Include="Nodo.h" />
     <ClInclude Include="NodoBoleto.h" />
     <ClInclude Include="NodoCliente.h" />
+    <ClInclude Include="NodoDoble.h" />
     <ClInclude Include="Pila.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
