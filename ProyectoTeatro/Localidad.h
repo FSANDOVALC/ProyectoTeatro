@@ -10,9 +10,9 @@ class Localidad
 {
 
 private:
+	int id;
 	string nombre;
 	string direccion;
-	int cantidadMaxima;
 	int gradAreaPreferencial[2][5],gradPrefMatrix[4][5], gradGenMatrix[4][5];
 	Pila graderiaPreferencial;
 	Lista graderiaGeneral;
@@ -20,17 +20,21 @@ private:
 	ColaClientes colaGAP;
 	ColaClientes colaGP;
 	ColaClientes colaGG;
+	Localidad* sgte;
 
 public:
 	Localidad();
+	Localidad(int pId, string pNom, string pDir);
 
 	//Operaciones Localidad
 	string getNombre();
 	void setNombre(string pNombre);
 	string getDireccion();
 	void setDireccion(string pDireccion);
-	int getCantidadMaxima();
-	void setCantidadMaxima(int pCantidad);
+	int getIdLocalidad();
+	void setIdLocalidad(int pCantidad);
+	void setSiguiente(Localidad* pLocalidad);
+	Localidad* getSiguiente();
 
 	//Operaciones area preferencial
 	bool reservarEspacioAP(int asiento,string nombre, int numero, int id);

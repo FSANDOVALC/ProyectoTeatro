@@ -140,8 +140,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ColaClientes.cpp" />
+    <ClCompile Include="GestorReservas.cpp" />
     <ClCompile Include="Lista.cpp" />
     <ClCompile Include="ListaDobleEnlazada.cpp" />
+    <ClCompile Include="ListaLocalidades.cpp" />
     <ClCompile Include="Localidad.cpp" />
     <ClCompile Include="Nodo.cpp" />
     <ClCompile Include="NodoBoleto.cpp" />
@@ -152,8 +154,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ColaClientes.h" />
+    <ClInclude Include="GestorReservas.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaDobleEnlazada.h" />
+    <ClInclude Include="ListaLocalidades.h" />
     <ClInclude Include="Localidad.h" />
     <ClInclude Include="Nodo.h" />
     <ClInclude Include="NodoBoleto.h" />

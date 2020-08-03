@@ -4,7 +4,14 @@ Localidad::Localidad()
 {
 	this->nombre = "";
 	this->direccion = "";
-	this->cantidadMaxima = 50;
+	this->id = 0;
+}
+
+Localidad::Localidad(int pId,string pNom, string pDir)
+{
+	this->id = pId;
+	this->nombre = pNom;
+	this->direccion = pDir;
 }
 
 string Localidad::getNombre()
@@ -27,14 +34,24 @@ void Localidad::setDireccion(string pDireccion)
 	this->direccion = pDireccion;
 }
 
-int Localidad::getCantidadMaxima()
+int Localidad::getIdLocalidad()
 {
-	return this->cantidadMaxima;
+	return this->id;
 }
 
-void Localidad::setCantidadMaxima(int pCantidad)
+void Localidad::setIdLocalidad(int pId)
 {
-	this->cantidadMaxima = pCantidad;
+	this->id = pId;
+}
+
+void Localidad::setSiguiente(Localidad* pLocalidad)
+{
+	this->sgte = pLocalidad;
+}
+
+Localidad* Localidad::getSiguiente()
+{
+	return this->sgte;
 }
 
 bool Localidad::reservarEspacioAP(int asiento,string nombre, int numero, int id)
@@ -171,6 +188,7 @@ void Localidad::liberarGraderiaGeneral()
 
 void Localidad::imprimirEspaciosGraderias()
 {
+	cout << "Espacios de Localidad: " + getNombre() << endl;
 	imprimirAreaPreferencial();
 	imprimirMatrizGradPref();
 	imprimirMatrizGradGeneral();
