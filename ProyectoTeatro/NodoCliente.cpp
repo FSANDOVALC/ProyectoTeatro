@@ -43,6 +43,16 @@ int NodoCliente::getId()
 	return this->identificacion;
 }
 
+void NodoCliente::setSiguiente(NodoCliente* pNodo)
+{
+	this->sgte = pNodo;
+}
+
+NodoCliente* NodoCliente::getSiguiente()
+{
+	return this->sgte;
+}
+
 string NodoCliente::imprimir()
 {
 	return "Nombre: " + this->getNombre() + " Telefono: "+ to_string(this->getNumero()) + " Identificacion: " + to_string(this->getId()) +"\n";

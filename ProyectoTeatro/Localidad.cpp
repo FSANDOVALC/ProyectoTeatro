@@ -40,29 +40,40 @@ void Localidad::setCantidadMaxima(int pCantidad)
 bool Localidad::reservarEspacioAP(int asiento,string nombre, int numero, int id)
 {
 	bool rslt;
-	if (graderiaAreaPreferencial.getCabeza() == NULL) {
-		rslt = graderiaAreaPreferencial.insertar(asiento, "GraderiaAreaPreferencial", 7000, nombre, numero, id);
-		if (rslt) {
-			llenarEspacioGraderiaAreaPreferencial(asiento);
-		}
-		return rslt;
-	}
-	else {
-		int tmpAsientoTope = graderiaAreaPreferencial.getLargo();
-		if (tmpAsientoTope >= 10) {
-			return false; //TODO agregar a cola
-		}
-		else {
+
+		if (graderiaAreaPreferencial.getCabeza() == NULL) {
 			rslt = graderiaAreaPreferencial.insertar(asiento, "GraderiaAreaPreferencial", 7000, nombre, numero, id);
-			llenarEspacioGraderiaAreaPreferencial(asiento);
+			if (rslt) {
+				llenarEspacioGraderiaAreaPreferencial(asiento);
+			}
 			return rslt;
 		}
-	}
+		//Valida si el dato ya existe reserva con ese numero de asiento
+		else if (graderiaAreaPreferencial.existeDato(asiento)) {
+			return false;
+		}
+		else{
+			int tmpAsientoTope = graderiaAreaPreferencial.getLargo();
+			if (tmpAsientoTope >= 10) {
+				colaGAP.insertarElemento(nombre, numero, id);
+				return false;
+			}
+			else {
+				rslt = graderiaAreaPreferencial.insertar(asiento, "GraderiaAreaPreferencial", 7000, nombre, numero, id);
+				llenarEspacioGraderiaAreaPreferencial(asiento);
+				return rslt;
+			}
+		}
 }
 
 string Localidad::imprimirEspaciosAP()
 {
 	return graderiaAreaPreferencial.mostrarDobleEn();
+}
+
+bool Localidad::existeReserva(int pDato)
+{
+	return graderiaAreaPreferencial.existeDato(pDato);
 }
 
 bool Localidad::reservarEspacioGG(string nombre, int numero, int id)
@@ -113,7 +124,6 @@ string Localidad::imprimirEspaciosGP()
 {
 	return graderiaPreferencial.imprimir();
 }
-
 
 void Localidad::liberarGraderias()
 {
@@ -243,6 +253,39 @@ void Localidad::llenarEspacioGraderiaGeneral(int pDato)
 				return;
 			}
 		}
+}
+
+string Localidad::imprimirColaGAP()
+{
+	string rslt = "\nDatos de cola Graderia Area Preferencial\n";
+	return rslt+=colaGAP.imprimir();
+}
+
+int Localidad::getCantClientesColaGAP()
+{
+	return colaGAP.getLongitud();
+}
+
+string Localidad::imprimirColaGP()
+{
+	string rslt = "\nDatos de cola Graderia Preferencial\n";
+	return rslt += colaGP.imprimir();
+}
+
+int Localidad::getCantClientesColaGP()
+{
+	return colaGP.getLongitud();
+}
+
+string Localidad::imprimirColaGG()
+{
+	string rslt = "\nDatos de cola Graderia General\n";
+	return rslt += colaGG.imprimir();
+}
+
+int Localidad::getCantClientesColaGG()
+{
+	return colaGG.getLongitud();
 }
 
 

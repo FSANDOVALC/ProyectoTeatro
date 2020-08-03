@@ -19,6 +19,7 @@ public:
 	NodoDoble* getTrasero();
 	void setLargo(int);
 	int getLargo();
+	bool existeDato(int pDato);
 private:
 	NodoDoble* cabeza;
 	NodoDoble* trasero;

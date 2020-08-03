@@ -16,8 +16,8 @@ ListaDobleEnlazada::~ListaDobleEnlazada() {}
 
 bool ListaDobleEnlazada::insertar(int pAsiento, string pUbicacion, int pCosto, string pNombre, int pNumero, int pId) {
 
-	NodoCliente* tmpCL = new NodoCliente(pNombre,pNumero,pId);
-	NodoDoble* aux = new NodoDoble(pAsiento,"AreaGeneral",7000,tmpCL);
+	NodoCliente* tmpCL = new NodoCliente(pNombre, pNumero, pId);
+	NodoDoble* aux = new NodoDoble(pAsiento, "AreaGeneral", 7000, tmpCL);
 
 	if (getLargo() < 10) {
 
@@ -63,13 +63,13 @@ bool ListaDobleEnlazada::insertar(int pAsiento, string pUbicacion, int pCosto, s
 string ListaDobleEnlazada::mostrarDobleEn() {
 	string mensaje = "";
 	if (esVacia()) {
-	
+
 		mensaje = "La lista esa vacia";
 	}
 	else {
 		NodoDoble* aux = getCabeza();
 		while (aux != nullptr) {
-			mensaje += "Elemento:" + to_string(aux->getAsiento())+"\n";
+			mensaje += "Elemento:" + to_string(aux->getAsiento()) + "\n";
 			aux = aux->getSiguiente();
 		}
 	}
@@ -87,14 +87,17 @@ string ListaDobleEnlazada::mostrarDobleEnTrasero() {
 			aux = aux->getAnterior();
 		}
 	}
-
-
 	return mensaje;
 }
 
 
 bool ListaDobleEnlazada::esVacia() {
-	return (ListaDobleEnlazada::getCabeza() == nullptr);
+	if (getCabeza() == NULL) {
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 void ListaDobleEnlazada::setCabeza(NodoDoble* cabeza) {
@@ -115,3 +118,17 @@ void ListaDobleEnlazada::setLargo(int largo) {
 int ListaDobleEnlazada::getLargo() {
 	return this->largo;
 }
+
+bool ListaDobleEnlazada::existeDato(int pDato)
+{
+	bool rslt = false;
+	NodoDoble* aux = getCabeza();
+	while (aux != nullptr) {
+		if (aux->getAsiento()==pDato) {
+			rslt = true;
+		}
+		aux = aux->getSiguiente();
+	}
+	return rslt;
+}
+

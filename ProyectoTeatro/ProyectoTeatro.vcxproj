@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ColaClientes.cpp" />
     <ClCompile Include="Lista.cpp" />
     <ClCompile Include="ListaDobleEnlazada.cpp" />
     <ClCompile Include="Localidad.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="ProyectoTeatro.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ColaClientes.h" />
     <ClInclude Include="Lista.h" />
     <ClInclude Include="ListaDobleEnlazada.h" />
     <ClInclude Include="Localidad.h" />

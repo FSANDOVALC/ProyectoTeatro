@@ -3,6 +3,7 @@
 #include "Pila.h"
 #include "Lista.h"
 #include "ListaDobleEnlazada.h"
+#include "ColaClientes.h"
 #include <iomanip>
 using namespace std;
 class Localidad
@@ -16,6 +17,9 @@ private:
 	Pila graderiaPreferencial;
 	Lista graderiaGeneral;
 	ListaDobleEnlazada graderiaAreaPreferencial;
+	ColaClientes colaGAP;
+	ColaClientes colaGP;
+	ColaClientes colaGG;
 
 public:
 	Localidad();
@@ -31,6 +35,7 @@ public:
 	//Operaciones area preferencial
 	bool reservarEspacioAP(int asiento,string nombre, int numero, int id);
 	string imprimirEspaciosAP();
+	bool existeReserva(int pDato);
 
 	//Operaciones graderia general
 	bool reservarEspacioGG(string nombre, int numero, int id);
@@ -52,6 +57,14 @@ public:
 	void llenarEspacioGraderiaPreferencial(int pDato);
 	void imprimirMatrizGradGeneral();
 	void llenarEspacioGraderiaGeneral(int pDato);
+
+	//Operaciones de cola
+	string imprimirColaGAP();
+	int getCantClientesColaGAP();
+	string imprimirColaGP();
+	int getCantClientesColaGP();
+	string imprimirColaGG();
+	int getCantClientesColaGG();
 
 
 };
