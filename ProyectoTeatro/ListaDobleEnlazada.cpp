@@ -17,7 +17,7 @@ ListaDobleEnlazada::~ListaDobleEnlazada() {}
 bool ListaDobleEnlazada::insertar(int pAsiento, string pUbicacion, int pCosto, string pNombre, int pNumero, int pId) {
 
 	NodoCliente* tmpCL = new NodoCliente(pNombre, pNumero, pId);
-	NodoDoble* aux = new NodoDoble(pAsiento, "AreaGeneral", 7000, tmpCL);
+	NodoDoble* aux = new NodoDoble(pAsiento, "AreaPreferencial", 7000, tmpCL);
 
 	if (getLargo() < 10) {
 
@@ -69,7 +69,15 @@ string ListaDobleEnlazada::mostrarDobleEn() {
 	else {
 		NodoDoble* aux = getCabeza();
 		while (aux != nullptr) {
-			mensaje += "Elemento:" + to_string(aux->getAsiento()) + "\n";
+			mensaje += "Asiento: "
+				+ to_string(aux->getAsiento())
+				+ " / Ubicacion: "
+				+ aux->getUbicacion()
+				+ " / Costo: "
+				+ to_string(aux->getCosto())
+				+ " / Cliente: "
+				+ aux->getCliente()->imprimir()
+				+ "\n";
 			aux = aux->getSiguiente();
 		}
 	}

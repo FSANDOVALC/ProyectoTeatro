@@ -190,8 +190,11 @@ void Localidad::imprimirEspaciosGraderias()
 {
 	cout << "Espacios de Localidad: " + getNombre() << endl;
 	imprimirAreaPreferencial();
+	cout << "Cola Area Preferencial: " << getCantClientesColaGAP() << endl;
 	imprimirMatrizGradPref();
+	cout << "Cola Graderia Preferencial: " << getCantClientesColaGP() << endl;
 	imprimirMatrizGradGeneral();
+	cout << "Cola Graderia General: " << getCantClientesColaGG() << endl;
 	cout << "\n**Los espacios con el numero 0 ya estan reservados\n";
 }
 

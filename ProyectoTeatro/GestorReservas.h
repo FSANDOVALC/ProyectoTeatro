@@ -19,5 +19,13 @@ public:
 	string reservarGraderiaPreferencial(string pNombre, int pNumero, int pCedula);
 	string reservarGraderiaGeneral(string pNombre, int pNumero, int pCedula);
 
+	string imprimirBoletosGAP();
+	string imprimirBoletosGP();
+	string imprimirBoletosGG();
+
+	string imprimirColaGAP();
+	string imprimirColaGP();
+	string imprimirColaGG();
+
 };
 

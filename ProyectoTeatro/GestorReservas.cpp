@@ -49,7 +49,7 @@ string GestorReservas::reservarAreaPreferencial(int pAsiento, string pNombre, in
 		return "Se reservo el espacio: " + pAsiento;
 	}
 	else {
-		return "No se pudo reservar el espacio: " + pAsiento;
+		return "Error: Lugar reservado o espacios llenos";
 	}
 }
 
@@ -60,7 +60,7 @@ string GestorReservas::reservarGraderiaPreferencial(string pNombre, int pNumero,
 		return "Se reservo un espacio";
 	}
 	else {
-		return "No se pudo reservar un espacio";
+		return "Error: Espacios llenos se colocara en cola";
 	}
 }
 
@@ -71,7 +71,67 @@ string GestorReservas::reservarGraderiaGeneral(string pNombre, int pNumero, int 
 		return "Se reservo un espacio";
 	}
 	else {
-		return "No se pudo reservar un espacio";
+		return "Error: Espacios llenos se colocara en cola";
+	}
+}
+
+string GestorReservas::imprimirBoletosGAP()
+{
+	if (localidadSeleccionada == NULL) {
+		return "No se ha seleccionado localidad o no existen localidades";
+	}
+	else {
+		return localidadSeleccionada->imprimirEspaciosAP();
+	}
+}
+
+string GestorReservas::imprimirBoletosGP()
+{
+	if (localidadSeleccionada == NULL) {
+		return "No se ha seleccionado localidad o no existen localidades";
+	}
+	else {
+		return localidadSeleccionada->imprimirEspaciosGP();
+	}
+}
+
+string GestorReservas::imprimirBoletosGG()
+{
+	if (localidadSeleccionada == NULL) {
+		return "No se ha seleccionado localidad o no existen localidades";
+	}
+	else {
+		return localidadSeleccionada->imprimirEspaciosGG();
+	}
+}
+
+string GestorReservas::imprimirColaGAP()
+{
+	if (localidadSeleccionada == NULL) {
+		return "No se ha seleccionado localidad o no existen localidades";
+	}
+	else {
+		return localidadSeleccionada->imprimirColaGAP();
+	}
+}
+
+string GestorReservas::imprimirColaGP()
+{
+	if (localidadSeleccionada == NULL) {
+		return "No se ha seleccionado localidad o no existen localidades";
+	}
+	else {
+		return localidadSeleccionada->imprimirColaGP();
+	}
+}
+
+string GestorReservas::imprimirColaGG()
+{
+	if (localidadSeleccionada == NULL) {
+		return "No se ha seleccionado localidad o no existen localidades";
+	}
+	else {
+		return localidadSeleccionada->imprimirColaGG();
 	}
 }
 

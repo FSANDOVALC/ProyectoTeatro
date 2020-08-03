@@ -9,16 +9,26 @@ static GestorReservas* migestor = new GestorReservas();
 void menu() {
 
     cout << "\n***********Menu de Teatro*************" << endl;
+    cout << endl;
     cout << "OPCIONES GENERALES" << endl;
     cout << "1.Crear nueva localidad de Teatro" << endl;
     cout << "2.Mostrar localidades" << endl;
+    cout << endl;
     cout << "OPCIONES USUARIO" << endl;
     cout << "3.Seleccionar localidad" << endl;
     cout << "4.Mostrar espacios de localidad" << endl;
     cout << "5.Reservar Area Preferencial" << endl;
     cout << "6.Reservar Graderia Preferencial" << endl;
     cout << "7.Reservar Graderia General" << endl;
-    cout << "8.Salir" << endl;
+    cout << endl;
+    cout << "REPORTES" << endl;
+    cout << "8.Mostrar reservas Area Preferencial" << endl;
+    cout << "9.Mostrar reservas Graderia Preferencial" << endl;
+    cout << "10.Mostrar reservas Graderia General" << endl;
+    cout << "11.Mostrar cola Area Preferencial" << endl;
+    cout << "12.Mostrar cola Graderia Preferencial" << endl;
+    cout << "13.Mostrar cola Graderia General" << endl;
+    cout << "14.Salir" << endl;
     cout << "Digite una opcion" << endl;
 }
 
@@ -85,66 +95,34 @@ void reservarEspacioGraderiaGeneral() {
     cout << migestor->reservarGraderiaGeneral(nom, num, cedula);
 }
 
+void mostrarBoletosGAP() {
+    cout << migestor->imprimirBoletosGAP();
+}
+
+void mostrarBoletosGP() {
+    cout << migestor->imprimirBoletosGP();
+}
+
+void mostrarBoletosGG() {
+    cout << migestor->imprimirBoletosGG();
+}
+
+void mostrarColaGAP() {
+    cout << migestor->imprimirColaGAP();
+}
+
+void mostrarColaGP() {
+    cout << migestor->imprimirColaGP();
+}
+
+void mostrarColaGG() {
+    cout << migestor->imprimirColaGG();
+}
+
 
 
 int main()
 {
-    
-    //ListaLocalidades miLista;
-
-    //Localidad miLocalidad;
-
-    //miLocalidad.liberarGraderias();
-
-    //miLocalidad.reservarEspacioAP(3,"Luis", 83250161, 1131424);
-    //miLocalidad.reservarEspacioAP(7, "Luis", 83250161, 1131424);
-    //miLocalidad.reservarEspacioAP(1, "Luis", 83250161, 1131424);
-    //miLocalidad.reservarEspacioAP(9, "Luis", 83250161, 1131424);
-    //miLocalidad.reservarEspacioAP(5, "Luis", 83250161, 1131424);
-    //miLocalidad.reservarEspacioAP(5, "Luis", 83250161, 1131424);
-    //miLocalidad.reservarEspacioAP(5, "Luis", 83250161, 1131424);
-    //miLocalidad.reservarEspacioAP(5, "Luis", 83250161, 1131424);
-    //miLocalidad.reservarEspacioAP(5, "Luis", 83250161, 1131424);
-    //miLocalidad.reservarEspacioAP(5, "Luis", 83250161, 1131424);
-    //miLocalidad.reservarEspacioAP(2, "Luis", 83250161, 1131424);
-    //miLocalidad.reservarEspacioAP(2, "Luis", 83250161, 1131424);
-    //miLocalidad.reservarEspacioAP(2, "Luis", 83250161, 1131424);
-    //miLocalidad.reservarEspacioAP(2, "Luis", 83250161, 1131424);
-    //cout << miLocalidad.imprimirEspaciosAP();
-
-    //miLocalidad.reservarEspacioGP("Luis", 83250161,1131424);
-    //miLocalidad.reservarEspacioGP("Luis", 83250163, 1131427);
-    //miLocalidad.reservarEspacioGP("Luis", 83250164, 1131425);
-    //miLocalidad.reservarEspacioGP("Luis", 83250164, 1131425);
-    //miLocalidad.reservarEspacioGP("Luis", 83250164, 1131425);
-    //miLocalidad.reservarEspacioGP("Luis", 83250164, 1131425);
-    //cout << miLocalidad.imprimirEspaciosGP();
-    //cout << "\nGraderia general\n";
-    //miLocalidad.reservarEspacioGG("Francisco", 83250155, 1131489);
-    //miLocalidad.reservarEspacioGG("Esteban", 83250155, 1131489);
-    //miLocalidad.reservarEspacioGG("Marjorie", 83250155, 1131489);
-    //miLocalidad.reservarEspacioGG("Fabiola", 83250155, 1131489);
-    //cout << miLocalidad.imprimirEspaciosGG();
-    //
-    //miLocalidad.imprimirEspaciosGraderias();
-
-    //cout << miLocalidad.imprimirColaGAP();
-
-
-    //miLista.agregarAlInicio("TeatroCouluche","SanJose");
-    //miLista.agregarAlInicio("TeatroMilan", "Alajuela");
-    //cout << miLista.recorrerLista();
-    //Localidad* tmpLC = miLista.getLocalidadById(1);
-    //Localidad* tmpLC2 = miLista.getLocalidadById(2);
-    //Localidad* tmpLC5 = miLista.getLocalidadById(5);
-    //tmpLC->liberarGraderias();
-    //tmpLC->reservarEspacioAP(3, "Luis", 83250161, 1131424);
-    //tmpLC->imprimirEspaciosGraderias();
-    //tmpLC2->liberarGraderias();
-    //tmpLC2->reservarEspacioAP(1, "Luis", 83250161, 1131424);
-    //tmpLC2->imprimirEspaciosGraderias();
-
-
     menu();
     int opc = 1;
     cin >> opc;
@@ -181,14 +159,30 @@ int main()
         main();
         break;
     case 8:
-        reservarEspacioGraderiaGeneral();
+        mostrarBoletosGAP();
         main();
         break;
     case 9:
-        reservarEspacioGraderiaGeneral();
+        mostrarBoletosGP();
         main();
         break;
-    case 15:
+    case 10:
+        mostrarBoletosGG();
+        main();
+        break;
+    case 11:
+        mostrarColaGAP();
+        main();
+        break;
+    case 12:
+        mostrarColaGP();
+        main();
+        break;
+    case 13:
+        mostrarColaGG();
+        main();
+        break;
+    case 14:
         cout << "Hasta Luego";
         break;
 
